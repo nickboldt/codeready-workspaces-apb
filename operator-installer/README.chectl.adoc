@@ -1,0 +1,34 @@
+= Red Hat CodeReady Workspaces chectl README
+
+Red Hat CodeReady Workspaces is a developer workspace server and cloud IDE.
+
+== About CodeReady Workspaces
+
+See product _Release Notes and Known Issues_ for more information about the product and the current version:
+
+https://access.redhat.com/documentation/en-us/red_hat_codeready_workspaces/1.2/html/release_notes_and_known_issues/
+
+== Installing CodeReady Workspaces
+
+The supported way to install CodeReady Workspaces depends on the destination cluster.
+
+For OpenShift 3.11, you can use the deploy.sh script in this folder.
+
+For OpenShift 4, you can try the chectl approach:
+
+chectl server:start \
+  --platform=openshift \
+  --installer=operator \
+  --che-operator-cr-yaml=custom-resource.yaml \
+  --che-operator-image=registry.redhat.io/codeready-workspaces/server-operator-rhel8:1.2-13 \
+  --cheimage=registry.redhat.io/codeready-workspaces/server-rhel8:1.2-35 \
+  --chenamespace=crw12-chectl \
+  --domain=<your openshift api URL>
+
+Other flags:
+
+  --listr-renderer=verbose \
+  --os-oauth \
+  --self-signed-cert \
+  --multiuser --tls \
+
